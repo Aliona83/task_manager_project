@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# PyCharm files
+.idea/
+*.iml
+
+# Django-specific
+*.log
+local_settings.py
+db.sqlite3
+
+# OS-specific files
+.DS_Store
