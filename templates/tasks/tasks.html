@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="my-4">Task List</h1>
+    <ul class="list-group">
+        {% for task in tasks %}
+            <li class="list-group-item">
+                <strong>{{ task.title }}</strong><br>
+                {{ task.description }}<br>
+                <small>Status: {{ task.status }} | Due: {{ task.due_date|date:"Y-m-d H:i" }}</small>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No tasks available.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
