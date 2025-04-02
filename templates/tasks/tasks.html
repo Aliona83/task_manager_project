@@ -1,16 +1,63 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 class="my-4">Task List</h1>
-    <ul class="list-group">
-        {% for task in tasks %}
-            <li class="list-group-item">
-                <strong>{{ task.title }}</strong><br>
-                {{ task.description }}<br>
-                <small>Status: {{ task.status }} | Due: {{ task.due_date|date:"Y-m-d H:i" }}</small>
-            </li>
-        {% empty %}
-            <li class="list-group-item">No tasks available.</li>
-        {% endfor %}
-    </ul>
+
+ <div class="container mt-4 text-center">
+    <h2>Task List</h2>
+
+    <div class="mb-3 d-flex gap-3">
+        <!-- Filters -->
+        <form method="GET" class="d-flex gap-2">
+            <select name="category" class="form-select">
+                <option value="">All Categories</option>
+                {% for cat in categories %}
+                <option value="{{ cat.id }}" {% if request.GET.category == cat.id|stringformat:"s" %}selected{% endif %}>{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="status" class="form-select">
+                <option value="">All Status</option>
+                {% for value, label in task_status %}
+                <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+
+    <table
+        data-toggle="table"
+        data-search="true"
+        data-pagination="true"
+        class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th data-checkbox="true"></th>
+                <th data-sortable="true">Task</th>
+                <th data-sortable="true">Status</th>
+                <th data-sortable="true">Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td></td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.category.name }}</td>
+                <td>
+                    <!-- Trash icon (🗑️) with link to delete view -->
+                    <a href="{% url 'delete_task' task.id %}" class="text-danger" onclick="return confirm('Are you sure?')">
+                        🗑️
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}

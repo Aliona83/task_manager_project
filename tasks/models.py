@@ -8,7 +8,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-# Модель задач
+
 class Task(models.Model):
     STATUS_CHOICES = [
         ('Waiting', 'Waiting'),
