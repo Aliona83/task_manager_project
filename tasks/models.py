@@ -11,7 +11,7 @@ class Category(models.Model):
 # Модель задач
 class Task(models.Model):
     STATUS_CHOICES = [
-        ('Pending', 'Waiting'),
+        ('Waiting', 'Waiting'),
         ('In Progress', 'In Progress'),
         ('Completed', 'Completed'),
     ]
@@ -19,7 +19,7 @@ class Task(models.Model):
     title = models.CharField(max_length=255, verbose_name="Title")
     description = models.TextField(verbose_name="Description", blank=True, null=True)
     due_date = models.DateTimeField(verbose_name="Due Date")
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending', verbose_name="Status")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Waiting', verbose_name="Status")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Category")
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
     created_at = models.DateTimeField(auto_now_add=True)
