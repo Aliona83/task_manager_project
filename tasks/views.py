@@ -83,3 +83,8 @@ def add_task(request):
     else:
         form = TaskForm()
     return render(request, 'tasks/add_task.html', {'form': form})
+
+def task_details(request, pk):
+    task = get_object_or_404(Task, pk=pk, user=request.user)
+    return render(request, 'tasks/task_details.html', {'task': task})
+
