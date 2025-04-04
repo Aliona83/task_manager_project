@@ -14,15 +14,25 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-         <img src="{% static 'images/logo.png' %}" alt="Task Management Logo" width="50" height="50">
+<header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom container">
+
+    <!-- Logo and Title -->
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <img class="logo me-2" src="{% static 'images/logo.png' %}" alt="Task Management Logo" width="50" height="50">
         <span class="fs-4">Task Management</span>
     </a>
-    <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Add Task</a></li>
+
+    <!-- Right side navigation -->
+    <ul class="nav">
+        {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link px-2 text-muted">Logout</a></li>
+        {% else %}
+            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link px-2 text-muted">Login</a></li>
+            <li class="nav-item"><a href="{% url 'register' %}" class="nav-link px-2 text-muted">Register</a></li>
+        {% endif %}
     </ul>
 </header>
+
 
 <body class="container">
     {% block content %}

@@ -9,6 +9,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'user', 'due_date', 'status', 'category')
     list_filter = ('status', 'due_date', 'category')
-    search_fields = ('title', 'description')
+    search_fields = ('title',)
 
 

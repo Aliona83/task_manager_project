@@ -1,9 +1,46 @@
-from django.shortcuts import render
-from .models import Task,Category
+from django.shortcuts import render,redirect
+from django.contrib.auth import login, authenticate, logout
+from .forms import RegisterForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
+from .models import Task,Category,User
+from .forms import TaskForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('task_list')
+    else:
+        form = RegisterForm()
+    return render(request, 'tasks/register.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('task_list')
+        else:
+            messages.error(request, 'Неправильный логин или пароль')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'tasks/login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+
+@login_required
 def task_list(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(user=request.user)
     categories = Category.objects.all()
     task_status = Task.STATUS_CHOICES
 
@@ -27,5 +64,22 @@ def task_list(request):
 
     return render(request, 'tasks/tasks.html', context)
 
-def delete_task(request,pk):
-    pass
+@login_required
+def delete_task(request, pk):
+    task = get_object_or_404(Task, pk=pk, user=request.user)
+    if request.method == 'POST':
+        task.delete()
+        return redirect('task_list')
+    return render(request, 'tasks/delete_task.html', {'task': task})
+
+def add_task(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = request.user
+            task.save()
+            return redirect('task_list')
+    else:
+        form = TaskForm()
+    return render(request, 'tasks/add_task.html', {'form': form})

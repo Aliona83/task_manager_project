@@ -74,6 +74,10 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'task_list'
+LOGOUT_REDIRECT_URL = 'login'
+
 WSGI_APPLICATION = 'TaskManagerProject.wsgi.application'
 
 

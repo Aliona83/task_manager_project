@@ -1,4 +1,6 @@
- body {
-background-color : white;
-color : #000;
+.logo {
+    object-fit: contain;
 }
+  .form-select {
+      width: 150px;
+  }

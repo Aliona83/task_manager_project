@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <div class="container mt-4 text-center">
     <h2>Task List</h2>
 
-    <div class="mb-3 d-flex gap-3">
-        <!-- Filters -->
+    <!-- Add Task button -->
+    <div class="mb-3 text-end">
+        <a href="" class="btn btn-success">+ Add Task</a>
+    </div>
+
+    <!-- Filters -->
+    <div class="mb-3 d-flex gap-3 justify-content-center">
         <form method="GET" class="d-flex gap-2">
             <select name="category" class="form-select">
                 <option value="">All Categories</option>
                 {% for cat in categories %}
-                <option value="{{ cat.id }}" {% if selected_category == cat.id %}selected{% endif %}>
-                    {{ cat.name }}
-                </option>
+                <option value="{{ cat.id }}" {% if selected_category == cat.id %}selected{% endif %}>{{ cat.name }}</option>
                 {% endfor %}
             </select>
 
             <select name="status" class="form-select">
                 <option value="">All Status</option>
                 {% for value, label in task_status %}
-                <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>
-                    {{ label }}
-                </option>
+                <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
             </select>
 
@@ -30,12 +30,12 @@
         </form>
     </div>
 
+    <!-- Table -->
     <table
         data-toggle="table"
         data-search="true"
         data-pagination="true"
         class="table table-bordered">
-
         <thead>
             <tr>
                 <th data-checkbox="true"></th>
@@ -64,5 +64,4 @@
         </tbody>
     </table>
 </div>
-
 {% endblock %}
