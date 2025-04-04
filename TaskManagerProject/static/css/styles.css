@@ -10,3 +10,11 @@
   .form-select {
       width: 150px;
   }
+
+.table-bordered {
+  background: white; /* 🟢 правильно, не backgroud, а background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* мягкая тень */
+  border-radius: 0.5rem; /* скруглённые углы */
+  padding: 1.5rem; /* отступ внутри */
+  margin-bottom: 1.5rem; /* отступ снизу */
+}

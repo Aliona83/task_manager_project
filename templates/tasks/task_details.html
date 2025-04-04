@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Task Details</h2>
+
+    <div class="card p-4 shadow rounded">
+        <h4 class="mb-3">{{ task.title }}</h4>
+
+        <!-- Task Information -->
+        <ul class="list-group mb-4 text-start">
+            <li class="list-group-item"><strong>Status:</strong> {{ task.status }}</li>
+            <li class="list-group-item"><strong>Category:</strong> {{ task.category.name }}</li>
+            <li class="list-group-item"><strong>Due Date:</strong> {{ task.due_date|date:"d.m.Y H:i" }}</li>
+            <li class="list-group-item"><strong>Created At:</strong> {{ task.created_at|date:"d.m.Y H:i" }}</li>
+            <li class="list-group-item"><strong>Updated At:</strong> {{ task.updated_at|date:"d.m.Y H:i" }}</li>
+        </ul>
+
+        <!-- Edit Form -->
+        <h5>Edit Task</h5>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" value="{{ task.title }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <select class="form-select" name="status">
+                    {% for value, label in task_status %}
+                        <option value="{{ value }}" {% if task.status == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select class="form-select" name="category">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}" {% if task.category.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Due Date</label>
+                <input type="datetime-local" class="form-control" name="due_date" value="{{ task.due_date|date:'Y-m-d\\TH:i' }}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{% url 'task_list' %}" class="btn btn-secondary ms-2">Back to Task List</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
