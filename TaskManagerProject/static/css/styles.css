@@ -12,9 +12,43 @@
   }
 
 .table-bordered {
-  background: white; /* 🟢 правильно, не backgroud, а background */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* мягкая тень */
-  border-radius: 0.5rem; /* скруглённые углы */
-  padding: 1.5rem; /* отступ внутри */
-  margin-bottom: 1.5rem; /* отступ снизу */
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
+
+form {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin: 40px auto;
+}
+h2 {
+  text-align: center;
+  margin-top: 40px;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+button:hover {
+  background-color: #0056b3;
+}
+a {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #007bff;
+}
+a:hover {
+  text-decoration: underline;
+}
+

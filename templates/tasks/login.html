@@ -1,7 +1,11 @@
-<h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
-<a href="{% url 'register' %}">Not login Yet? Register</a>
+<h2 class="text-center mt-5">Login</h2>
+<div class="container mt-4" style="max-width: 400px;">
+  <form method="post" class="border p-4 shadow-sm rounded bg-light">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+  </form>
+  <div class="text-center mt-3">
+    <a href="{% url 'register' %}">Not registered yet? Register</a>
+  </div>
+</div>
