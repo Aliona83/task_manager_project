@@ -1,16 +1,9 @@
 from rest_framework import serializers
-from .models import Category, Task
+from .models import Task
 from django.contrib.auth.models import User
-
-# Category Serializer
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id', 'name']
 
 # Task Serializer
 class TaskSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)  # Nested category serializer
     user = serializers.StringRelatedField()  # To show username instead of user ID
 
     class Meta:

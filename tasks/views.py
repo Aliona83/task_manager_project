@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import RegisterForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .models import Task,Category,User
+from .models import Task,User
 from .forms import TaskForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -41,7 +41,7 @@ def logout_view(request):
 @login_required
 def task_list(request):
     tasks = Task.objects.filter(user=request.user)
-    categories = Category.objects.all()
+    category = Task.CATEGORY_CHOICES
     task_status = Task.STATUS_CHOICES
 
     # Filtering logic
@@ -56,7 +56,7 @@ def task_list(request):
 
     context = {
         'tasks': tasks,
-        'categories': categories,
+        'category': category,
         'task_status': task_status,
         'selected_category': selected_category,
         'selected_status': selected_status,
