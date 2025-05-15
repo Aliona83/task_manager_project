@@ -46,8 +46,10 @@
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <select class="form-select" id="category" name="category">
-                                {% for category in categories %}
-                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% for value, label in category %}
+                                    <option value="{{ value }}">{{ label }}</option>
+                                {% empty %}
+                                    <option>No categories found</option>
                                 {% endfor %}
                             </select>
                         </div>

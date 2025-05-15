@@ -4,13 +4,9 @@ from rest_framework.views import APIView
 from  rest_framework.response import Response
 from rest_framework import status
 
-from .models import Category, Task
-from .serializers import CategorySerializer, TaskSerializer, TaskCreateUpdateSerializer
+from .models import  Task
+from .serializers import  TaskSerializer, TaskCreateUpdateSerializer
 
-
-class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
 
 
 class TaskViewSet(viewsets.ModelViewSet):

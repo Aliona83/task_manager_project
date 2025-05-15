@@ -73,9 +73,10 @@ def delete_task(request, pk):
     return render(request, 'tasks/delete_task.html', {'task': task})
 
 def add_task(request):
-    categories = Category.objects.all()
+
     users = User.objects.all()
     task_status = Task.STATUS_CHOICES
+    category = Task.CATEGORY_CHOICES
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -85,19 +86,19 @@ def add_task(request):
             return redirect('task_list')
     else:
         form = TaskForm()
-        categories = Category.objects.all()
+        category = Task.CATEGORY_CHOICES
         users = User.objects.all()
         task_status = Task.STATUS_CHOICES
-    return render(request, 'tasks/add_task.html', {'form': form,  'categories': categories,
+    return render(request, 'tasks/add_task.html', {'form': form,  'category': category,
         'users': users,
         'task_status': task_status,})
 
 def task_details(request, pk):
-    categories = Category.objects.all()
+    category = Task.CATEGORY_CHOICES
     users = User.objects.all()
     task_status = Task.STATUS_CHOICES
     task = get_object_or_404(Task, pk=pk, user=request.user)
-    return render(request, 'tasks/task_details.html', {'task': task, 'categories': categories,
+    return render(request, 'tasks/task_details.html', {'task': task, 'category': category,
         'users': users,
         'task_status': task_status,})
 
