@@ -27,6 +27,8 @@
             </select>
 
             <button type="submit" class="btn btn-primary">Filter</button>
+
+            <a href="{% url 'task_list' %}" class="btn btn-outline-secondary">Clear Filters</a>
         </form>
     </div>
 
@@ -38,14 +40,13 @@
         class="table table-bordered">
         <thead>
             <tr>
-                <th data-checkbox="true"></th>
                 <th data-sortable="true">Task</th>
                 <th data-sortable="true">Status</th>
                 <th data-sortable="true">Category</th>
                 <th>Due Date</th>
                 <th>Created</th>
-                <th>Actions-Open</th>
-                <th>Actions-Delete</th>
+                <th>Task Details</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
