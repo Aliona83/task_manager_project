@@ -51,7 +51,6 @@
         <tbody>
             {% for task in tasks %}
             <tr {% if task.due_date and task.due_date < now %} class="table-danger" {% endif %}>
-            <td></td>
                 <td>{{ task.title }}</td>
     <td>
         {% if task.status == 'Completed' %}
