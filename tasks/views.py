@@ -49,7 +49,7 @@ def task_list(request):
     selected_status = request.GET.get('status')
 
     if selected_category:
-        tasks = tasks.filter(category_id=selected_category)
+        tasks = tasks.filter(category=selected_category)
 
     if selected_status:
         tasks = tasks.filter(status=selected_status)

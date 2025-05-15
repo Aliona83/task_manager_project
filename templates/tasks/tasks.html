@@ -52,6 +52,7 @@
             <tr {% if task.due_date and task.due_date < now %} class="table-danger" {% endif %}>
             <td></td>
                 <td>{{ task.title }}</td>
+                <td>{{ task.category }}</td>
     <td>
         {% if task.status == 'Completed' %}
             <span class="badge bg-success">Done</span>
