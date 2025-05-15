@@ -44,7 +44,8 @@
                 <th data-sortable="true">Category</th>
                 <th>Due Date</th>
                 <th>Created</th>
-                <th>Actions</th>
+                <th>Actions-Open</th>
+                <th>Actions-Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -61,7 +62,7 @@
             <span class="badge bg-primary">In Progress</span>
         {% endif %}
     </td>
-              <td>{{ task.get_category_display() }}</td>
+              <td>{{ task.get_category_display }}</td>
 <td>{{ task.due_date|date:"d.m.Y H:i" }}</td>
 <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
 <td>
