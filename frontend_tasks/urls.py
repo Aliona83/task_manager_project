@@ -7,7 +7,7 @@ path('register/', register_view, name='register'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('', task_list, name='task_list'),
-    path('tasks/delete_task/<int:pk>/', delete_task, name='delete_task'),
+    path('frontend_tasks/delete_task/<int:pk>/', delete_task, name='delete_task'),
     path('task_details/<int:pk>/', task_details, name='task_details'),
     path('add_task/', add_task, name='add_task'),
 

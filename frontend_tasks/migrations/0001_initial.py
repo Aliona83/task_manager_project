@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=[('Pending', 'Waiting'), ('In Progress', 'In Progress'), ('Completed', 'Completed')], default='Pending', max_length=20, verbose_name='Status')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='tasks.category', verbose_name='Category')),
+                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='frontend_tasks.category', verbose_name='Category')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='User')),
             ],
         ),

@@ -1,11 +1,9 @@
-from django.template.context_processors import request
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from  rest_framework.response import Response
-from rest_framework import status
 
-from .models import  Task
-from .serializers import  TaskSerializer, TaskCreateUpdateSerializer
+from frontend_tasks.models import  Task
+from backend_tasks.serializers import  TaskSerializer, TaskCreateUpdateSerializer
 
 
 

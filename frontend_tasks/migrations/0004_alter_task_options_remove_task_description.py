@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tasks', '0003_alter_task_status'),
+        ('frontend_tasks', '0003_alter_task_status'),
     ]
 
     operations = [
