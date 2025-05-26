@@ -56,7 +56,7 @@ def task_list(request):
         tasks = tasks.filter(status=selected_status)
 
     context = {
-        'frontend_tasks': tasks,
+        'tasks': tasks,
         'category': category,
         'task_status': task_status,
         'selected_category': selected_category,
@@ -118,11 +118,11 @@ def weather_view(request):
     data = response.json()
 
     weather_data = None
-    if response.status_code == 200:
+    if response.status_code == 200 and 'current' in data:
         weather_data = {
-            'description': data['weather'][0]['description'],
-            'temperature': data['main']['temp'],
-            'city': data['name']
+            'description': data['current']['condition']['text'],
+            'temperature': data['current']['temp_c'],
+            'city': data['location']['name']
         }
 
     return render(request, 'tasks/weather.html', {
