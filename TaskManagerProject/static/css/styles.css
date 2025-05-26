@@ -1,9 +1,9 @@
-  body {
-    background: linear-gradient(to bottom, #f0f4f8, #dfe9f3);
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
+ body {
+  background-image: url("/static/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .logo {
     object-fit: contain;
 }
@@ -21,13 +21,10 @@
 }
 
 form {
-  background-color: #f8f9fa;
   padding: 13px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  min-width: 400px;
-  margin: 40px auto;
-}
+  min-width: 100px;
 h2 {
   text-align: center;
   margin-top: 40px;
