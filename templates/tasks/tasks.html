@@ -6,30 +6,28 @@
 
     <!-- Add Task button -->
     <div class= "mb-3 text-end">
-        <a href="{% url 'add_task' %}" class="btn btn-success">+ Add Task</a>
+        <a href="{% url 'add_task' %}" class="btn btn-outline-secondary">+ Add Task</a>
     </div>
 
     <!-- Filters -->
-    <div class="filter-bar p-3 rounded d-flex gap-3 justify-content-center align-items-center">
-  <form method="GET" class="d-flex gap-2 flex-wrap align-items-center">
-    <select name="category" class="form-select form-select-sm rounded-pill border-0 shadow-sm">
+  div class="d-flex justify-content-center my-4">
+  <form method="GET" class="filter-box d-flex gap-2 flex-wrap align-items-center">
+    <select name="category" class="form-select form-select-sm rounded-pill shadow-sm">
       <option value="">All Categories</option>
       {% for value,label in category %}
         <option value="{{ value }}" {% if selected_category == value %}selected{% endif %}>{{ label }}</option>
       {% endfor %}
     </select>
 
-    <select name="status" class="form-select form-select-sm rounded-pill border-0 shadow-sm">
+    <select name="status" class="form-select form-select-sm rounded-pill shadow-sm">
       <option value="">All Status</option>
       {% for value, label in task_status %}
         <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>
       {% endfor %}
     </select>
 
-    <div class="d-flex gap-2">
-      <button type="submit" class="btn btn-warning btn-sm rounded-pill px-3">Filter</button>
-      <a href="{% url 'task_list' %}" class="btn btn-outline-dark btn-sm rounded-pill px-3">Clear</a>
-    </div>
+    <button type="submit" class="btn btn-warning btn-sm rounded-pill px-3">Filter</button>
+    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Clear</a>
   </form>
 </div>
 

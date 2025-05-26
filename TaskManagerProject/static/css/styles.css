@@ -7,11 +7,13 @@
 .logo {
     object-fit: contain;
 }
-  .filter-bar {
-  background-color: #fff4db;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
+.filter-box {
+  background-color: #fffdf5;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 
+}
 .form-select {
   min-width: 150px;
   background-color: #ffffff;
