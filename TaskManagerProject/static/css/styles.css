@@ -46,3 +46,42 @@ a:hover {
 .btn-primary {
 width:150px;
 }
+.weather-container {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.weather-container.sunny {
+  background: url('/static/images/sunny.jpg') no-repeat center/cover;
+}
+
+.weather-container.cloudy {
+  background: url('/static/images/cloudy.jpg') no-repeat center/cover;
+}
+
+.weather-container.partly-cloudy {
+  background: url('/static/images/partly-cloudy.jpg') no-repeat center/cover;
+}
+
+.forecast {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.forecast-day {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.spinner {
+  display: none;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.spinner.active {
+  display: block;
+}

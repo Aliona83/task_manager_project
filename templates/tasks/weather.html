@@ -1,26 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Check Weather</h2>
+  <div class="weather-container {% if weather %}{{ weather.description|lower|slugify }}{% endif %}">
 
-  <form method="post">
-    {% csrf_token %}
-    <label for="city">Select a city:</label>
-    <select name="city" id="city">
-      {% for city_option in cities %}
-        <option value="{{ city_option }}" {% if city_option == selected_city %}selected{% endif %}>
-          {{ city_option }}
-        </option>
-      {% endfor %}
-    </select>
-    <button type="submit">Get Weather</button>
-  </form>
+    <h2>Check Weather</h2>
 
-  {% if weather %}
-    <h3>Weather in {{ weather.city }}</h3>
-    <p>Description: {{ weather.description }}</p>
-    <p>Temperature: {{ weather.temperature }}°C</p>
-  {% else %}
-    <p>Weather data not available for '{{ selected_city }}'.</p>
-  {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      <label for="city">Select a city:</label>
+      <select name="city" id="city">
+        {% for city_option in cities %}
+          <option value="{{ city_option }}" {% if city_option == selected_city %}selected{% endif %}>
+            {{ city_option }}
+          </option>
+        {% endfor %}
+      </select>
+      <button type="submit">Get Weather</button>
+    </form>
+
+    <div id="spinner" class="spinner">Loading...</div>
+
+    {% if weather %}
+      <h3>Weather in {{ weather.city }}</h3>
+      <p><strong>{{ weather.description }}</strong></p>
+      <img src="{{ weather.icon }}" alt="Weather Icon">
+      <p>Temperature: {{ weather.temperature }}°C</p>
+
+      <h3>3-Day Forecast</h3>
+      <div class="forecast">
+        {% for day in weather.forecast %}
+          <div class="forecast-day">
+            <p>{{ day.date }}</p>
+            <img src="{{ day.icon }}" alt="Icon">
+            <p>{{ day.text }}</p>
+            <p>{{ day.temp }}°C</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>Weather data not available for '{{ selected_city }}'.</p>
+    {% endif %}
+  </div>
+
+  <script>
+    const form = document.querySelector("form");
+    const spinner = document.getElementById("spinner");
+
+    form.addEventListener("submit", function () {
+      spinner.classList.add("active");
+    });
+  </script>
 {% endblock %}

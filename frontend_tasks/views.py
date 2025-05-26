@@ -112,17 +112,29 @@ def weather_view(request):
         city = request.POST.get('city', 'London')
 
     api_key = "4a1fd4150fd249368e793057252605"
-    url = f"http://api.weatherapi.com/v1/current.json?key={api_key}&q={city}&aqi=no"
+    url = f"http://api.weatherapi.com/v1/forecast.json?key={api_key}&q={city}&days=3&aqi=no&alerts=no"
 
     response = requests.get(url)
     data = response.json()
 
     weather_data = None
-    if response.status_code == 200 and 'current' in data:
+    if response.status_code == 200 and 'forecast' in data:
+        current = data['current']
+        forecast_days = data['forecast']['forecastday']
+
         weather_data = {
-            'description': data['current']['condition']['text'],
-            'temperature': data['current']['temp_c'],
-            'city': data['location']['name']
+            'city': data['location']['name'],
+            'description': current['condition']['text'],
+            'temperature': current['temp_c'],
+            'icon': 'https:' + current['condition']['icon'],
+            'forecast': [
+                {
+                    'date': day['date'],
+                    'temp': day['day']['avgtemp_c'],
+                    'icon': 'https:' + day['day']['condition']['icon'],
+                    'text': day['day']['condition']['text']
+                } for day in forecast_days
+            ]
         }
 
     return render(request, 'tasks/weather.html', {
