@@ -112,7 +112,7 @@ def weather_view(request):
         city = request.POST.get('city', 'London')
 
     api_key = "4a1fd4150fd249368e793057252605"
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={cities}&units=metric&appid={api_key}"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}"
 
     response = requests.get(url)
     data = response.json()
