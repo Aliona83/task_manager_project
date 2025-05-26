@@ -74,9 +74,8 @@ def delete_task(request, pk):
         task.delete()
         return redirect('task_list')
     return render(request, 'tasks/delete_task.html', {'task': task})
-
+@login_required
 def add_task(request):
-
     users = User.objects.all()
     task_status = Task.STATUS_CHOICES
     category = Task.CATEGORY_CHOICES
@@ -97,14 +96,30 @@ def add_task(request):
         'task_status': task_status,})
 
 
+from django.shortcuts import render, get_object_or_404, redirect
+
+@login_required
 def task_details(request, pk):
     category = Task.CATEGORY_CHOICES
     users = User.objects.all()
     task_status = Task.STATUS_CHOICES
     task = get_object_or_404(Task, pk=pk, user=request.user)
-    return render(request, 'tasks/task_details.html', {'task': task, 'category': category,
+
+    if request.method == 'POST':
+        task.title = request.POST.get('title')
+        task.status = request.POST.get('status')
+        task.category = request.POST.get('category')
+        # add more fields as needed
+        task.save()
+        return redirect('task_list')  # or redirect to the same detail page
+
+    return render(request, 'tasks/task_details.html', {
+        'task': task,
+        'category': category,
         'users': users,
-        'task_status': task_status,})
+        'task_status': task_status,
+    })
+
 
 def weather_view(request):
     # List of cities for the dropdown

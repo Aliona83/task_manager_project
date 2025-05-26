@@ -14,11 +14,35 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 
 }
+.nav-link {
+  position: relative;
+  color: #7e93ab;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #7e93ab;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
 .form-select {
   min-width: 150px;
   background-color: #ffffff;
 }
-
+.btn-outline-secondary {
+  background-color: #c9c7b4;
+  color: black;
+}
 .btn-warning {
   background-color: #ecd7b9;
   color: #000;
