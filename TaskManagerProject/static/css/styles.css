@@ -7,10 +7,31 @@
 .logo {
     object-fit: contain;
 }
-  .form-select {
-      width: 150px;
-      margin:18px;
-  }
+  .filter-bar {
+  background-color: #fff4db;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.form-select {
+  min-width: 150px;
+  background-color: #ffffff;
+}
+
+.btn-warning {
+  background-color: #ecd7b9;
+  color: #000;
+  border: none;
+}
+
+.btn-outline-dark {
+  border-color: #aaa;
+  color: #333;
+}
+
+.btn-outline-dark:hover {
+  background-color: #ecd7b9;
+  color: #000;
+}
 
 .table-bordered {
   background: white;
