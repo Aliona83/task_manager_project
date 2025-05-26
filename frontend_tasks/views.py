@@ -19,7 +19,7 @@ def register_view(request):
             return redirect('task_list')
     else:
         form = RegisterForm()
-    return render(request, 'frontend_tasks/register.html', {'form': form})
+    return render(request, 'tasks/register.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -29,10 +29,10 @@ def login_view(request):
             login(request, user)
             return redirect('task_list')
         else:
-            messages.error(request, 'Неправильный логин или пароль')
+            messages.error(request, 'Password is wrong')
     else:
         form = AuthenticationForm()
-    return render(request, 'frontend_tasks/login.html', {'form': form})
+    return render(request, 'tasks/login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
@@ -63,7 +63,7 @@ def task_list(request):
         'selected_status': selected_status,
     }
 
-    return render(request, 'frontend_tasks/tasks.html', context)
+    return render(request, 'tasks/tasks.html', context)
 
 @login_required
 def delete_task(request, pk):
@@ -71,7 +71,7 @@ def delete_task(request, pk):
     if request.method == 'POST':
         task.delete()
         return redirect('task_list')
-    return render(request, 'frontend_tasks/delete_task.html', {'task': task})
+    return render(request, 'tasks/delete_task.html', {'task': task})
 
 def add_task(request):
 
@@ -90,7 +90,7 @@ def add_task(request):
         category = Task.CATEGORY_CHOICES
         users = User.objects.all()
         task_status = Task.STATUS_CHOICES
-    return render(request, 'frontend_tasks/add_task.html', {'form': form,  'category': category,
+    return render(request, 'tasks/add_task.html', {'form': form,  'category': category,
         'users': users,
         'task_status': task_status,})
 
@@ -99,7 +99,7 @@ def task_details(request, pk):
     users = User.objects.all()
     task_status = Task.STATUS_CHOICES
     task = get_object_or_404(Task, pk=pk, user=request.user)
-    return render(request, 'frontend_tasks/task_details.html', {'task': task, 'category': category,
+    return render(request, 'tasks/task_details.html', {'task': task, 'category': category,
         'users': users,
         'task_status': task_status,})
 
@@ -125,7 +125,7 @@ def weather_view(request):
             'city': data['name']
         }
 
-    return render(request, 'weather.html', {
+    return render(request, 'tasks/weather.html', {
         'weather': weather_data,
         'cities': cities,
         'selected_city': city
