@@ -105,7 +105,7 @@ def task_details(request, pk):
 
 def weather_view(request):
     # List of cities for the dropdown
-    cities = ['London', 'New York', 'Tokyo', 'Paris', 'Nairobi', 'Sydney', 'Cairo']
+    cities = ['London', 'New York', 'Tokyo', 'Paris', 'Nairobi', 'Sydney', 'Cairo','Ireland']
     city = 'London'  # default
 
     if request.method == 'POST':
@@ -143,4 +143,21 @@ def weather_view(request):
         'selected_city': city
     })
 
+from django.http import JsonResponse
+import requests
+
+def autocomplete_city(request):
+    query = request.GET.get('q')
+    api_key = "YOUR_API_KEY"
+
+    if not query:
+        return JsonResponse([], safe=False)
+
+    url = f"http://api.weatherapi.com/v1/search.json?key={api_key}&q={query}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        return JsonResponse(response.json(), safe=False)
+    else:
+        return JsonResponse([], safe=False)
 

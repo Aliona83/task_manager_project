@@ -1,20 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
   <div class="weather-container {% if weather %}{{ weather.description|lower|slugify }}{% endif %}">
-
     <h2>Check Weather</h2>
 
-    <form method="post">
+    <form method="post" autocomplete="off" style="position: relative;">
       {% csrf_token %}
-      <label for="city">Select a city:</label>
-      <select name="city" id="city">
-        {% for city_option in cities %}
-          <option value="{{ city_option }}" {% if city_option == selected_city %}selected{% endif %}>
-            {{ city_option }}
-          </option>
-        {% endfor %}
-      </select>
+      <label for="city">Enter a city:</label>
+      <input type="text" id="city" name="city" placeholder="Start typing a city..." value="{{ selected_city }}">
+      <ul id="suggestions"></ul>
       <button type="submit">Get Weather</button>
     </form>
 
@@ -43,11 +38,37 @@
   </div>
 
   <script>
+    const input = document.getElementById("city");
+    const suggestions = document.getElementById("suggestions");
     const form = document.querySelector("form");
     const spinner = document.getElementById("spinner");
 
     form.addEventListener("submit", function () {
       spinner.classList.add("active");
+    });
+
+    input.addEventListener("input", function () {
+      const query = input.value;
+
+      if (query.length < 2) {
+        suggestions.innerHTML = "";
+        return;
+      }
+
+      fetch(`/autocomplete/?q=${query}`)
+        .then(response => response.json())
+        .then(data => {
+          suggestions.innerHTML = "";
+          data.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = `${item.name}, ${item.country}`;
+            li.addEventListener("click", () => {
+              input.value = item.name;
+              suggestions.innerHTML = "";
+            });
+            suggestions.appendChild(li);
+          });
+        });
     });
   </script>
 {% endblock %}
