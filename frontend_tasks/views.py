@@ -7,6 +7,7 @@ from .models import Task,User
 from .forms import TaskForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+import requests
 
 
 def register_view(request):
@@ -101,4 +102,33 @@ def task_details(request, pk):
     return render(request, 'frontend_tasks/task_details.html', {'task': task, 'category': category,
         'users': users,
         'task_status': task_status,})
+
+def weather_view(request):
+    # List of cities for the dropdown
+    cities = ['London', 'New York', 'Tokyo', 'Paris', 'Nairobi', 'Sydney', 'Cairo']
+    city = 'London'  # default
+
+    if request.method == 'POST':
+        city = request.POST.get('city', 'London')
+
+    api_key = "4a1fd4150fd249368e793057252605"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={cities}&units=metric&appid={api_key}"
+
+    response = requests.get(url)
+    data = response.json()
+
+    weather_data = None
+    if response.status_code == 200:
+        weather_data = {
+            'description': data['weather'][0]['description'],
+            'temperature': data['main']['temp'],
+            'city': data['name']
+        }
+
+    return render(request, 'weather.html', {
+        'weather': weather_data,
+        'cities': cities,
+        'selected_city': city
+    })
+
 

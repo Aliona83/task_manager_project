@@ -38,7 +38,9 @@
                 <label class="form-label">Category</label>
                 <select class="form-select" name="category">
                     {% for category in categories %}
-                        <option value="{{ category.id }}" {% if task.category.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                        <option value="{{ value }}">{{ label }}</option>
+                        {% empty %}
+                        <option>No categories found</option>
                     {% endfor %}
                 </select>
             </div>
