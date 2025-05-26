@@ -63,7 +63,7 @@ def task_list(request):
         'selected_status': selected_status,
     }
 
-    return render(request, 'frontend_tasks/frontend_tasks.html', context)
+    return render(request, 'frontend_tasks/tasks.html', context)
 
 @login_required
 def delete_task(request, pk):
