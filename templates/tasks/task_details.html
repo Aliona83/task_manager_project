@@ -36,8 +36,8 @@
 
             <div class="mb-3">
                 <label class="form-label">Category</label>
-                <select class="form-select" name="category">
-                    {% for category in categories %}
+                <select class="form-select" id="category" name="category">
+                    {% for value,label in category %}
                         <option value="{{ value }}">{{ label }}</option>
                         {% empty %}
                         <option>No categories found</option>

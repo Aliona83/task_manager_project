@@ -8,6 +8,8 @@ from .forms import TaskForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 import requests
+from django.http import JsonResponse
+
 
 
 def register_view(request):
@@ -94,6 +96,7 @@ def add_task(request):
         'users': users,
         'task_status': task_status,})
 
+
 def task_details(request, pk):
     category = Task.CATEGORY_CHOICES
     users = User.objects.all()
@@ -143,8 +146,7 @@ def weather_view(request):
         'selected_city': city
     })
 
-from django.http import JsonResponse
-import requests
+
 
 def autocomplete_city(request):
     query = request.GET.get('q')
