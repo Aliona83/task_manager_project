@@ -1,11 +1,11 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from backend_tasks.api_views import TaskViewSet,TaskFilterApiView
-
-router = DefaultRouter()
-router.register(r'frontend_tasks', TaskViewSet)
+from django.urls import path
+from . import api_views
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('frontend_tasks/filter/', TaskFilterApiView.as_view(), name='task-filter'),
+    path('tasks/', api_views.api_task_list),
+    path('tasks/add/', api_views.api_add_task),
+    path('tasks/<int:pk>/', api_views.api_task_details),
+    path('tasks/<int:pk>/delete/', api_views.api_delete_task),
+    path('weather/', api_views.api_weather),
 ]
+
