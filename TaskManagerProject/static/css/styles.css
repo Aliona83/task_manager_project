@@ -5,9 +5,12 @@
   background-repeat: no-repeat;
 }
 .logo {
-    width: 70px;
-    height: 90px;
+  .logo {
+    height: 40px;
+    width: auto;
     object-fit: contain;
+}
+
 }
 .filter-box {
   background-color: #fffdf5;
