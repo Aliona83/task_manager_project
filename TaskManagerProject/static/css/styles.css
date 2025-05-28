@@ -5,6 +5,8 @@
   background-repeat: no-repeat;
 }
 .logo {
+    width: 70px;
+    height: auto;
     object-fit: contain;
 }
 .filter-box {
