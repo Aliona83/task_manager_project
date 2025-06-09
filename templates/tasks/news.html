@@ -2,9 +2,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1 style="text-align: center; color: #fff; margin-top: 20px;">Latest News</h1>
+<h1>Latest News</h1>
 
-<div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: auto; padding: 20px;">
+<div class="news-card">
   {% for article in articles %}
       <h2 style="margin-top: 0;">{{ article.title }}</h2>
       <p>{{ article.description }}</p>
