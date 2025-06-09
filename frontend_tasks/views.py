@@ -130,7 +130,7 @@ def weather_view(request):
     if request.method == 'POST':
         city = request.POST.get('city', 'London')
 
-    api_key = "4a1fd4150fd249368e793057252605"
+    api_key = "77f5167af82141ddb0a83033250906"
     url = f"http://api.weatherapi.com/v1/forecast.json?key={api_key}&q={city}&days=3&aqi=no&alerts=no"
 
     response = requests.get(url)
@@ -166,7 +166,7 @@ def weather_view(request):
 
 def autocomplete_city(request):
     query = request.GET.get('q')
-    api_key = "YOUR_API_KEY"
+    api_key = "77f5167af82141ddb0a83033250906"
 
     if not query:
         return JsonResponse([], safe=False)
