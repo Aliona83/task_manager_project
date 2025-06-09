@@ -155,4 +155,15 @@ width:150px;
 #suggestions li:hover {
   background-color: #eee;
 }
+.news-card {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .news-card a {
+    color: #00bfff;
+  }
 
