@@ -166,7 +166,7 @@ def weather_view(request):
 
 def autocomplete_city(request):
     query = request.GET.get('q')
-    api_key = "4a1fd4150fd249368e793057252605"
+    api_key = "YOUR_API_KEY"
 
     if not query:
         return JsonResponse([], safe=False)
@@ -196,5 +196,5 @@ def news_view(request):
         'articles': articles
     }
 
-    return render(request, 'news.html', context)
+    return render(request, 'tasks/news.html', context)
 
