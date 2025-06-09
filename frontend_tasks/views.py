@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 import requests
 from django.http import JsonResponse
+from newsapi import NewsApiClient
 
 
 
@@ -124,7 +125,7 @@ def task_details(request, pk):
 def weather_view(request):
     # List of cities for the dropdown
     cities = ['London', 'New York', 'Tokyo', 'Paris', 'Nairobi', 'Sydney', 'Cairo','Ireland']
-    city = 'London'  # default
+    city = 'London'
 
     if request.method == 'POST':
         city = request.POST.get('city', 'London')
@@ -165,7 +166,7 @@ def weather_view(request):
 
 def autocomplete_city(request):
     query = request.GET.get('q')
-    api_key = "YOUR_API_KEY"
+    api_key = "4a1fd4150fd249368e793057252605"
 
     if not query:
         return JsonResponse([], safe=False)
@@ -177,4 +178,23 @@ def autocomplete_city(request):
         return JsonResponse(response.json(), safe=False)
     else:
         return JsonResponse([], safe=False)
+
+def news_view(request):
+    api_key = "07b57b16fd014b3b8a9c1b1937be4300"
+    newsapi = NewsApiClient(api_key=api_key)
+
+    # Fetch top headlines
+    top_headlines = newsapi.get_top_headlines(
+        q='technology',
+        language='en',
+        country='us'
+    )
+
+    articles = top_headlines['articles']
+
+    context = {
+        'articles': articles
+    }
+
+    return render(request, 'news.html', context)
 

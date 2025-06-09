@@ -26,6 +26,7 @@
     <ul class="nav">
         {% if user.is_authenticated %}
             <li class="nav-item"><a href="{% url 'weather' %}" class="nav-link px-2 fw-bold">Weather</a></li>
+        <li class="nav-item"><a href="{% url 'news' %}" class="nav-link px-2 fw-bold">News</a></li>
             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link px-2 fw-bold">Logout</a></li>
         {% else %}
             <li class="nav-item"><a href="{% url 'login' %}" class="nav-link px-2 fw-bold">Login</a></li>

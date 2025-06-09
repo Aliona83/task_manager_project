@@ -1,6 +1,6 @@
 from django.conf.urls.i18n import urlpatterns
 from django.urls import path
-from .views import task_list,delete_task,register_view,login_view,logout_view,task_details,add_task,weather_view,autocomplete_city
+from .views import task_list,delete_task,register_view,login_view,logout_view,task_details,add_task,weather_view,autocomplete_city,news_view
 
 urlpatterns = [
 path('register/', register_view, name='register'),
@@ -12,6 +12,7 @@ path('register/', register_view, name='register'),
     path('add_task/', add_task, name='add_task'),
     path('weather/', weather_view, name='weather'),
     path('autocomplete/', autocomplete_city, name='autocomplete_city'),
+    path('news/', weather_view, name='news'),
 
 
 

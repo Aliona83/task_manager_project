@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Latest News</h1>
+    {% for article in articles %}
+        <div style="margin-bottom: 20px;">
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.description }}</p>
+            <a href="{{ article.url }}" target="_blank">Read more</a>
+        </div>
+    {% endfor %}
+{% endblock %}
