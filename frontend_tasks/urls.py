@@ -12,7 +12,7 @@ path('register/', register_view, name='register'),
     path('add_task/', add_task, name='add_task'),
     path('weather/', weather_view, name='weather'),
     path('autocomplete/', autocomplete_city, name='autocomplete_city'),
-    path('news/', weather_view, name='news'),
+    path('news/', news_view, name='news'),
 
 
 
