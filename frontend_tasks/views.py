@@ -179,22 +179,19 @@ def autocomplete_city(request):
     else:
         return JsonResponse([], safe=False)
 
+
 def news_view(request):
     api_key = "07b57b16fd014b3b8a9c1b1937be4300"
     newsapi = NewsApiClient(api_key=api_key)
 
-    # Fetch top headlines
-    top_headlines = newsapi.get_top_headlines(
-        q='technology',
+    all_articles = newsapi.get_everything(
+        q='news',  # very broad keyword
         language='en',
-        country='us'
+        sort_by='publishedAt',
+        page_size=20,  # max 100
+        page=1         # supports pagination
     )
 
-    articles = top_headlines['articles']
+    articles = all_articles.get('articles', [])
 
-    context = {
-        'articles': articles
-    }
-
-    return render(request, 'tasks/news.html', context)
-
+    return render(request, 'tasks/news.html', {'articles': articles})
