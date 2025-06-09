@@ -97,7 +97,6 @@ width:150px;
 .weather-container {
   padding: 1rem;
   border-radius: 8px;
-  background-color: red;
 }
 
 .weather-container.sunny {
@@ -164,7 +163,7 @@ width:150px;
 }
 
 .news-container {
-  background-color: white;
+  background: white;
   padding: 40px;
   border-radius: 12px;
   max-width: 800px;
