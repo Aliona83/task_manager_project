@@ -189,12 +189,13 @@ def news_view(request):
     page = int(request.GET.get('page', 1))
 
     try:
-        all_articles = newsapi.get_top_headlines(
-            country='ie',
+        all_articles = newsapi.get_everything(
+            q='Ireland',
             language='en',
             page_size=20,
             page=page
         )
+        print(all_articles)
         articles = all_articles.get('articles', [])
         total_results = all_articles.get('totalResults', 0)
         has_next = page * 20 < total_results
