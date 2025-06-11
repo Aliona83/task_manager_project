@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container my-5">
+  <h1 class="text-center mb-4">Latest News</h1>
 
-<h1 class="news-title text-center">Latest News</h1>
-
-<div class="news-container">
-  {% for article in articles %}
-    <div class="news-card">
-      <h2>{{ article.title }}</h2>
-      <p>{{ article.description }}</p>
-      <a href="{{ article.url }}" target="_blank">Read more</a>
+  <div class="bg-light p-4 rounded shadow-sm">
+    <div class="row">
+      {% for article in articles %}
+        <div class="col-md-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ article.title }}</h5>
+              <p class="card-text">{{ article.description }}</p>
+              <a href="{{ article.url }}" target="_blank" class="btn btn-primary">Read more</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
+  </div>
 </div>
-
-{% endblock %}
