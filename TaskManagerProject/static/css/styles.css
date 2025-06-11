@@ -155,5 +155,13 @@ width:150px;
 #suggestions li:hover {
   background-color: #eee;
 }
+.news-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #e0f3ff; /* Light blue */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
 
 
