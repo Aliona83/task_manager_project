@@ -180,18 +180,37 @@ def autocomplete_city(request):
         return JsonResponse([], safe=False)
 
 
+
 def news_view(request):
     api_key = "07b57b16fd014b3b8a9c1b1937be4300"
     newsapi = NewsApiClient(api_key=api_key)
 
-    all_articles = newsapi.get_everything(
-        q='news',  # very broad keyword
-        language='en',
-        sort_by='publishedAt',
-        page_size=20,  # max 100
-        page=1         # supports pagination
-    )
+    # Get current page from request
+    page = int(request.GET.get('page', 1))
 
-    articles = all_articles.get('articles', [])
+    try:
+        all_articles = newsapi.get_top_headlines(
+            country='ie',
+            language='en',
+            page_size=20,
+            page=page
+        )
+        articles = all_articles.get('articles', [])
+        total_results = all_articles.get('totalResults', 0)
+        has_next = page * 20 < total_results
+        has_prev = page > 1
 
-    return render(request, 'tasks/news.html', {'articles': articles})
+    except Exception as e:
+        articles = []
+        has_next = False
+        has_prev = False
+        print("News API error:", e)
+
+    context = {
+        'articles': articles,
+        'page': page,
+        'has_next': has_next,
+        'has_prev': has_prev
+    }
+
+    return render(request, 'tasks/news.html', context)
