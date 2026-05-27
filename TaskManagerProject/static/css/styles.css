@@ -5,17 +5,18 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
   min-height: 100vh;
+  background: linear-gradient(135deg, #e8f0fe 0%, #fce4ec 100%);
 }
+
  
 main {
   flex: 1;
 }
  
 .logo {
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
   object-fit: contain;
 }
  
@@ -81,17 +82,18 @@ main {
   margin-bottom: 1.5rem;
 }
  
+
 form {
-  padding: 13px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  min-width: 100px;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 300px;
+  max-width: 400px;
+  margin: 2rem auto;
 }
  
-h2 {
-  text-align: center;
-  margin-top: 40px;
-}
+
  
 a {
   display: block;
