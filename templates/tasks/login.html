@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2 class="text-center mt-5">Login</h2>
-<div class="container mt-4" style="max-width: 400px;">
-  <form method="post" class="auth-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary w-100">Login</button>
-  </form>
-  <div class="text-center mt-3">
-    <a href="{% url 'register' %}">Not registered yet? Register</a>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+  <div style="width: 100%; max-width: 450px;">
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      <h2 class="text-center mb-4">Login</h2>
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+    <div class="text-center mt-3">
+      <a href="{% url 'register' %}">Not registered yet? Register</a>
+    </div>
   </div>
 </div>
 {% endblock %}
