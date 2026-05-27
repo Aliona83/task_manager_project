@@ -46,7 +46,7 @@ main {
 }
 
 /* Form */
-form {
+.auth-form {
   background: white;
   padding: 3rem;
   border-radius: 16px;
@@ -54,7 +54,6 @@ form {
   width: 100%;
   max-width: 450px;
 }
-
 h2 {
   text-align: center;
   margin-bottom: 2rem;
